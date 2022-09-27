@@ -1,15 +1,18 @@
-<a href="/create" type="button" class="btn btn-success mb-3">Tambah Data</a>
+<?= $this->extend('template')?>
+<?= $this->section('content')?>
+<a href="/create" type="button" class="btn btn-primary mb-3 ms-2">tambah data</a>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col"></th>
       <th scope="col">NPM</th>
       <th scope="col">Nama</th>
       <th scope="col">Alamat</th>
+      <th scope="col">Deskripsi</th>
       <th scope="col">Created_At</th>
       <th scope="col">Action</th>
     </tr>
-  </thead>  
+  </thead>
   <tbody>
     <?php $no = 1;
     foreach($mahasiswa as $mhs): ?>
@@ -18,13 +21,13 @@
       <td><?= $mhs['npm'] ?> </td>
       <td><?= $mhs['nama'] ?> </td>
       <td><?= $mhs['alamat'] ?> </td>
+      <td><?= $mhs['deskripsi'] ?> </td>
       <td><?= $mhs['created_at'] ?> </td>
       <td>
-      <td>
-        <div class="d-flex">
-          <a class="btn btn-warning mr-3" href="/edit/<?= $mhs['id'] ?>">Edit</a>
+      <div class="d-flex">
+          <a class="btn btn-warning mr-3" href="/edit/<?=$mhs['id'] ?>">Edit</a>
           <form action="/delete/<?= $mhs['id'] ?>" method="post">
-            <input name="_method" value="DELETE" type="hidden">
+            <input hidden name="_method" value="DELETE" type="hidden">
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>
         </div>
@@ -34,3 +37,4 @@
     endforeach ?>
   </tbody>
 </table>
+<?= $this->endSection()?>
